@@ -10,12 +10,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- MathJax for rendering math formulas (保留以備不時之需) -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <style>
         body {
             font-family: 'Noto Sans TC', sans-serif;
             background-color: #f8fafc;
-            scroll-behavior: smooth;
+            /* scroll-behavior: smooth;  <-- 建議移除此行，完全交由 JS 控制捲動行為以避免與固定導覽列偏移計算衝突 */
         }
         .gradient-text {
             background: linear-gradient(to right, #2563eb, #0891b2);
@@ -293,17 +296,20 @@
                             <div class="flex overflow-x-auto gap-4 pb-4 gallery-scroll">
                                 <!-- Photo 1: Setup -->
                                 <div class="min-w-[250px] md:min-w-[300px] border rounded-lg overflow-hidden shadow-sm">
-                                    <img src="lab_setup.jpg" alt="實驗架設" class="w-full h-48 object-cover hover:scale-105 transition-transform">
+                                    <img src="lab_setup.jpg" alt="實驗架設" class="w-full h-48 object-cover hover:scale-105 transition-transform"
+                                         onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'h-48 bg-gray-100 flex items-center justify-center text-gray-400 text-sm p-4 text-center\'>圖片 lab_setup.jpg 未找到</div>'">
                                     <div class="p-2 bg-gray-50 text-center text-sm font-medium text-gray-600">實驗儀器架設</div>
                                 </div>
                                 <!-- Photo 2: Process -->
                                 <div class="min-w-[250px] md:min-w-[300px] border rounded-lg overflow-hidden shadow-sm">
-                                    <img src="lab_process.jpg" alt="實驗過程" class="w-full h-48 object-cover hover:scale-105 transition-transform">
+                                    <img src="lab_process.jpg" alt="實驗過程" class="w-full h-48 object-cover hover:scale-105 transition-transform"
+                                         onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'h-48 bg-gray-100 flex items-center justify-center text-gray-400 text-sm p-4 text-center\'>圖片 lab_process.jpg 未找到</div>'">
                                     <div class="p-2 bg-gray-50 text-center text-sm font-medium text-gray-600">震源敲擊過程</div>
                                 </div>
                                 <!-- Photo 3: Data -->
                                 <div class="min-w-[250px] md:min-w-[300px] border rounded-lg overflow-hidden shadow-sm">
-                                    <img src="lab_data.jpg" alt="數據分析" class="w-full h-48 object-cover hover:scale-105 transition-transform">
+                                    <img src="lab_data.jpg" alt="數據分析" class="w-full h-48 object-cover hover:scale-105 transition-transform"
+                                         onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'h-48 bg-gray-100 flex items-center justify-center text-gray-400 text-sm p-4 text-center\'>圖片 lab_data.jpg 未找到</div>'">
                                     <div class="p-2 bg-gray-50 text-center text-sm font-medium text-gray-600">數據與走時曲線</div>
                                 </div>
                             </div>
@@ -333,14 +339,16 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- Image 1 -->
                     <div class="rounded-xl overflow-hidden shadow-md border border-gray-200">
-                        <img src="image_ae690b.jpg" alt="折射公式推導過程圖 1" class="w-full h-auto object-contain hover:scale-105 transition-transform duration-300">
+                        <img src="image_ae690b.jpg" alt="折射公式推導過程圖 1" class="w-full h-auto object-contain hover:scale-105 transition-transform duration-300"
+                             onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'h-64 bg-gray-100 flex items-center justify-center text-gray-400 p-4 text-center\'>image_ae690b.jpg 未找到</div>'">
                         <div class="p-3 bg-gray-50 border-t">
                             <p class="text-center text-gray-600 text-sm font-medium">推導過程 - Part 1</p>
                         </div>
                     </div>
-                     <!-- Image 2 -->
-                     <div class="rounded-xl overflow-hidden shadow-md border border-gray-200">
-                        <img src="image_ae6948.jpg" alt="折射公式推導過程圖 2" class="w-full h-auto object-contain hover:scale-105 transition-transform duration-300">
+                      <!-- Image 2 -->
+                      <div class="rounded-xl overflow-hidden shadow-md border border-gray-200">
+                        <img src="image_ae6948.jpg" alt="折射公式推導過程圖 2" class="w-full h-auto object-contain hover:scale-105 transition-transform duration-300"
+                             onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'h-64 bg-gray-100 flex items-center justify-center text-gray-400 p-4 text-center\'>image_ae6948.jpg 未找到</div>'">
                         <div class="p-3 bg-gray-50 border-t">
                             <p class="text-center text-gray-600 text-sm font-medium">推導過程 - Part 2</p>
                         </div>
@@ -411,19 +419,28 @@
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
 
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
+        if (btn && menu) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+        }
 
-        // Simple smooth scroll adjustment for fixed navbar
+        // Smooth scroll with fixed navbar adjustment
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                menu.classList.add('hidden'); // close mobile menu on click
+                
+                // Close mobile menu if open
+                if (menu && !menu.classList.contains('hidden')) {
+                    menu.classList.add('hidden');
+                }
                 
                 const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
                 const targetElement = document.querySelector(targetId);
-                const navbarHeight = document.getElementById('navbar').offsetHeight;
+                const navbar = document.getElementById('navbar');
+                const navbarHeight = navbar ? navbar.offsetHeight : 0;
 
                 if (targetElement) {
                     window.scrollTo({

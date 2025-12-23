@@ -4,19 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>地球物理學概論 - 期末學習歷程報告 | u11310004</title>
-
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <!-- MathJax for rendering math formulas (保留以備不時之需) -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
     <style>
         body {
             font-family: 'Noto Sans TC', sans-serif;
             background-color: #f8fafc;
+            /* scroll-behavior: smooth;  <-- 建議移除此行，完全交由 JS 控制捲動行為以避免與固定導覽列偏移計算衝突 */
         }
         .gradient-text {
             background: linear-gradient(to right, #2563eb, #0891b2);
@@ -28,9 +30,9 @@
         }
         .card-hover:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1),
-                        0 8px 10px -6px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
         }
+        /* Custom scrollbar for gallery */
         .gallery-scroll::-webkit-scrollbar {
             height: 8px;
         }
@@ -40,39 +42,125 @@
         }
     </style>
 </head>
-
 <body class="text-slate-800">
 
-<!-- 中略：前半部導覽列、作業卡片完全未動 -->
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <i class="fa-solid fa-earth-americas text-blue-600 text-2xl mr-2"></i>
+                    <span class="font-bold text-xl tracking-tight">Geophysics Portfolio</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">首頁</a>
+                    <a href="#assignments" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">實作作業</a>
+                    <a href="#experiments" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">實驗與推導</a>
+                    <a href="#lectures" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">演講心得</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-blue-600 focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white border-t" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">首頁</a>
+                <a href="#assignments" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">實作作業</a>
+                <a href="#experiments" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">實驗與推導</a>
+                <a href="#lectures" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">演講心得</a>
+            </div>
+        </div>
+    </nav>
 
-<!-- ===== HW5 Gallery（已修正路徑） ===== -->
-<img src="123/lab_setup.jpg" alt="實驗架設"
-     class="w-full h-48 object-cover hover:scale-105 transition-transform"
-     onerror="this.onerror=null;
-              this.parentElement.innerHTML='<div class=\'h-48 bg-gray-100 flex items-center justify-center text-gray-400 text-sm\'>圖片 123/lab_setup.jpg 未找到</div>'">
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 bg-gradient-to-br from-blue-50 to-cyan-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-blue-600 font-semibold tracking-wide uppercase text-sm mb-4">113學年度第一學期</h2>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">地球物理學概論 <br><span class="gradient-text">期末學習歷程報告</span></h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-10">
+                本網頁彙整了本學期所有的程式實作、實驗報告及專家演講心得。展示了如何結合 Python (PyGMT)、AI 工具 (Gradio/Dify) 與地球物理知識。
+            </p>
+            <div class="flex justify-center items-center space-x-4">
+                <div class="bg-white px-6 py-3 rounded-full shadow-sm border border-gray-200 flex items-center">
+                    <i class="fa-regular fa-id-card text-blue-500 mr-2"></i>
+                    <span class="font-medium">學號：u11310004</span>
+                </div>
+                <a href="https://github.com/u11310004" target="_blank" class="bg-gray-800 text-white px-6 py-3 rounded-full hover:bg-gray-700 transition shadow-lg">
+                    <i class="fa-brands fa-github mr-2"></i> GitHub Profile
+                </a>
+            </div>
+        </div>
+    </section>
 
-<img src="123/lab_process.jpg" alt="實驗過程"
-     class="w-full h-48 object-cover hover:scale-105 transition-transform"
-     onerror="this.onerror=null;
-              this.parentElement.innerHTML='<div class=\'h-48 bg-gray-100 flex items-center justify-center text-gray-400 text-sm\'>圖片 123/lab_process.jpg 未找到</div>'">
+    <!-- Assignments Grid Section -->
+    <section id="assignments" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900">程式與 AI 實作作業</h2>
+                <div class="w-24 h-1 bg-blue-500 mx-auto mt-4 rounded-full"></div>
+                <p class="mt-4 text-gray-600">結合 HuggingFace, Gradio, Dify 與 PyGMT 的實作成果</p>
+            </div>
 
-<img src="123/lab_data.jpg" alt="數據分析"
-     class="w-full h-48 object-cover hover:scale-105 transition-transform"
-     onerror="this.onerror=null;
-              this.parentElement.innerHTML='<div class=\'h-48 bg-gray-100 flex items-center justify-center text-gray-400 text-sm\'>圖片 123/lab_data.jpg 未找到</div>'">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- HW1 -->
+                <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm card-hover flex flex-col">
+                    <div class="bg-blue-600 h-2"></div>
+                    <div class="p-6 flex-1">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">作業 1</span>
+                            <i class="fa-solid fa-robot text-gray-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">地球物理概論 AI 應用</h3>
+                        <p class="text-gray-600 text-sm mb-4">利用 AI 工具參考課本目錄，製作成互動式應用程式並部署於 Hugging Face Space。</p>
+                    </div>
+                    <div class="p-6 pt-0 mt-auto">
+                        <a href="https://huggingface.co/spaces/u11310004/intro_geophysics" target="_blank" class="block w-full text-center bg-blue-50 hover:bg-blue-100 text-blue-700 font-medium py-2 rounded-lg transition">
+                            瀏覽 Hugging Face <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
 
-<!-- ===== HW4 折射公式推導（已修正路徑） ===== -->
-<img src="123/image_ae690b.jpg" alt="折射公式推導過程圖 1"
-     class="w-full h-auto object-contain hover:scale-105 transition-transform"
-     onerror="this.onerror=null;
-              this.parentElement.innerHTML='<div class=\'h-64 bg-gray-100 flex items-center justify-center text-gray-400\'>123/image_ae690b.jpg 未找到</div>'">
+                <!-- HW2 -->
+                <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm card-hover flex flex-col">
+                    <div class="bg-orange-500 h-2"></div>
+                    <div class="p-6 flex-1">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-orange-100 text-orange-800 text-xs font-semibold px-2.5 py-0.5 rounded">作業 2</span>
+                            <i class="fa-brands fa-blogger text-gray-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Google Blogger 課程紀錄</h3>
+                        <p class="text-gray-600 text-sm mb-4">利用 AI 協助生成 HTML，將課程大綱與相關資料整理發布於 Blogger。</p>
+                    </div>
+                    <div class="p-6 pt-0 mt-auto">
+                        <a href="https://daiiclasswork2.blogspot.com/2025/09/blog-post.html" target="_blank" class="block w-full text-center bg-orange-50 hover:bg-orange-100 text-orange-700 font-medium py-2 rounded-lg transition">
+                            前往 Blogger <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
 
-<img src="123/image_ae6948.jpg" alt="折射公式推導過程圖 2"
-     class="w-full h-auto object-contain hover:scale-105 transition-transform"
-     onerror="this.onerror=null;
-              this.parentElement.innerHTML='<div class=\'h-64 bg-gray-100 flex items-center justify-center text-gray-400\'>123/image_ae6948.jpg 未找到</div>'">
-
-<!-- 中略：Footer 與 JS 未動 -->
-
-</body>
-</html>
+                <!-- HW8 -->
+                <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm card-hover flex flex-col">
+<!-- 略過部分以節省篇幅 —
+```html
+<!-- 圖片部分 -->
+<div class="min-w-[250px] md:min-w-[300px] border rounded-lg overflow-hidden shadow-sm">
+    <img src="123/lab_setup.jpg" alt="實驗架設" class="w-full h-48 object-cover hover:scale-105 transition-transform"
+         onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'h-48 bg-gray-100 flex items-center justify-center text-gray-400 text-sm p-4 text-center\'>圖片 123/lab_setup.jpg 未找到</div>'">
+    <div class="p-2 bg-gray-50 text-center text-sm font-medium text-gray-600">實驗儀器架設</div>
+</div>
+<div class="min-w-[250px] md:min-w-[300px] border rounded-lg overflow-hidden shadow-sm">
+    <img src="123/lab_process.jpg" alt="實驗過程" class="w-full h-48 object-cover hover:scale-105 transition-transform"
+         onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'h-48 bg-gray-100 flex items-center justify-center text-gray-400 text-sm p-4 text-center\'>圖片 123/lab_process.jpg 未找到</div>'">
+    <div class="p-2 bg-gray-50 text-center text-sm font-medium text-gray-600">震源敲擊過程</div>
+</div>
+<div class="min-w-[250px] md:min-w-[300px] border rounded-lg overflow-hidden shadow-sm">
+    <img src="123/lab_data.jpg" alt="數據分析" class="w-full h-48 object-cover hover:scale-105 transition-transform"
+         onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'h-48 bg-gray-100 flex items-center justify-center text-gray-400 text-sm p-4 text-center\'>圖片 123/lab_data.jpg 未找到</div>'">
+    <div class="p-2 bg-gray-50 text-center text-sm font-medium text-gray-600">數據與走時曲線</div>
+</div>

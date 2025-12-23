@@ -154,3 +154,94 @@
                         </a>
                     </div>
                 </div>
+    <!-- Lecture Summaries Section -->
+    <section id="lectures" class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900">專題演講心得</h2>
+                <div class="w-24 h-1 bg-blue-500 mx-auto mt-4 rounded-full"></div>
+                <p class="mt-4 text-gray-600">作業 6, 13, 14 學習筆記摘要</p>
+            </div>
+
+            <div class="space-y-8">
+                <!-- Lecture 1 -->
+                <div class="border-l-4 border-blue-500 pl-6 py-2">
+                    <h3 class="text-xl font-bold text-gray-900">甘禮有博士：地震層析成像</h3>
+                    <p class="text-sm text-gray-500 mb-2"><i class="fa-regular fa-calendar mr-1"></i> 作業 6</p>
+                    <p class="text-gray-700 leading-relaxed">
+                        這次演講讓我了解到地震層析成像就像是為地球進行「CT 掃描」。核心技術在於解決「正演問題」與「逆推問題」。透過全波形逆推 (Full Waveform Inversion)，科學家能利用振幅與相位變化，解析出高解析度的地下構造（如卡斯卡迪亞隱沒帶與台灣地區的岩漿庫）。這不僅需要物理知識，更依賴尖端計算科學來克服傳統限制。
+                    </p>
+                </div>
+
+                <!-- Lecture 2 -->
+                <div class="border-l-4 border-red-500 pl-6 py-2">
+                    <h3 class="text-xl font-bold text-gray-900">黃有志博士：火山觀測與板塊構造</h3>
+                    <p class="text-sm text-gray-500 mb-2"><i class="fa-regular fa-calendar mr-1"></i> 作業 13</p>
+                    <p class="text-gray-700 leading-relaxed">
+                        探討了台灣與日本火山活躍度的差異。雖然同處環太平洋帶，日本有 111 座活火山，台灣則相對較少，這與地殼厚度及隱沒角度有關。此外，了解了日本氣象廳 (JMA) 與京都大學防災研究所 (DPRI) 的分工合作模式，以及熊本地震與阿蘇火山活動之間的潛在關聯。
+                    </p>
+                </div>
+
+                <!-- Lecture 3 -->
+                <div class="border-l-4 border-purple-500 pl-6 py-2">
+                    <h3 class="text-xl font-bold text-gray-900">廖勿渝博士：AI 在地震學的應用</h3>
+                    <p class="text-sm text-gray-500 mb-2"><i class="fa-regular fa-calendar mr-1"></i> 作業 14</p>
+                    <p class="text-gray-700 leading-relaxed">
+                        AI 正改變傳統地震學的工作流程。演講展示了「ARRU 相位拾取器」與「RockNet」等模型，利用 CNN 與 RNN 自動提取波形特徵，大幅提升 P 波與 S 波到時的拾取效率與準確度。雖然能處理微小地震與大量數據，但仍需結合領域知識來解決誤報與大地震低估的問題。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-10">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-lg font-semibold mb-2">地球物理學概論 Introduction to Geophysics</p>
+            <p class="text-gray-400 text-sm">Student ID: u11310004 | 2025 Spring Semester</p>
+            <div class="mt-6">
+                <a href="#home" class="text-gray-400 hover:text-white mx-2 transition">回到頂端</a>
+            </div>
+            <p class="text-xs text-gray-500 mt-8">&copy; 2025 u11310004. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        if (btn && menu) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+        }
+
+        // Smooth scroll with fixed navbar adjustment
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                if (menu && !menu.classList.contains('hidden')) {
+                    menu.classList.add('hidden');
+                }
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                const navbar = document.getElementById('navbar');
+                const navbarHeight = navbar ? navbar.offsetHeight : 0;
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - navbarHeight,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

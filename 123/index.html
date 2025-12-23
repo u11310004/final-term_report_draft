@@ -29,6 +29,14 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
         }
+        /* Custom scrollbar for gallery */
+        .gallery-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+        .gallery-scroll::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body class="text-slate-800">
@@ -247,29 +255,61 @@
                         <h3 class="text-2xl font-bold mb-4">作業 5: 震測實驗報告</h3>
                         <div class="mb-4">
                             <span class="inline-block bg-slate-700 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">第七組</span>
-                            <span class="inline-block bg-slate-700 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">折射震測</span>
+                            <span class="inline-block bg-slate-700 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">組員: 邱定軒、鍾秉致</span>
                         </div>
                         <p class="text-slate-300">
                             實驗目的為測量地震波在原介質中的速率及介質轉換時的折射波速率，並推導地層深度與地下起伏。
                         </p>
                     </div>
                     <div class="md:w-2/3 p-8">
-                        <h4 class="text-lg font-bold text-gray-800 mb-3 border-b pb-2">實驗過程與原理</h4>
+                        <h4 class="text-lg font-bold text-gray-800 mb-3 border-b pb-2">實驗過程與配置</h4>
                         <p class="text-gray-600 mb-4 leading-relaxed">
-                            將 Geophone 每兩公尺設置一個並插入土中，連接電纜至電腦。使用鐵鎚敲擊鐵板作為震源。當波遇到不同介質（如砂層與岩層）分界面時，因速度差異產生反射與折射。利用電腦紀錄數據進行分析。
+                            <strong>儀器架設：</strong>將 Geophone (受波器) 每 2 公尺設置一個並插入土中，確保穩固。將感測器連接至電腦以紀錄數據。<br>
+                            <strong>震源產生：</strong>使用鐵鎚用力敲擊鐵板作為震源。同時需設置一個額外的感測器（Trigger）作為觸發端，確保它是第一個接收到訊號的裝置。<br>
+                            <strong>原理：</strong>當波遇到不同介質（如表層砂土與下層岩石）分界面時，因密度與速度差異產生反射與折射，透過分析「走時曲線」來計算地層特性。
                         </p>
                         
-                        <h4 class="text-lg font-bold text-gray-800 mb-3 border-b pb-2">數據分析結果</h4>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="bg-blue-50 p-4 rounded-lg">
-                                <h5 class="font-bold text-blue-800 mb-2">直達波速率</h5>
-                                <p class="text-sm text-gray-700">測量值約在 <span class="font-mono font-bold">200m/s ~ 466m/s</span> 之間，顯示表層介質較為鬆軟。</p>
+                        <h4 class="text-lg font-bold text-gray-800 mb-3 border-b pb-2">數據分析摘要</h4>
+                        <div class="space-y-4">
+                            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-blue-400">
+                                <h5 class="font-bold text-gray-900">敲擊點一 (18m 處 / 第 10 支 Geophone)</h5>
+                                <ul class="list-disc list-inside text-sm text-gray-700 mt-2">
+                                    <li>直達波速率：約 <span class="font-mono font-bold">363 ~ 466 m/s</span> (表層介質鬆軟)</li>
+                                    <li>折射波速率：約 <span class="font-mono font-bold">1000 ~ 1142 m/s</span> (下層介質較硬)</li>
+                                </ul>
                             </div>
-                            <div class="bg-green-50 p-4 rounded-lg">
-                                <h5 class="font-bold text-green-800 mb-2">折射波速率</h5>
-                                <p class="text-sm text-gray-700">測量值約在 <span class="font-mono font-bold">1000m/s ~ 1500m/s</span> 之間，顯示下層介質密度較高。</p>
+                            <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-green-400">
+                                <h5 class="font-bold text-gray-900">敲擊點二 (24m 處 / 第 13 支 Geophone)</h5>
+                                <ul class="list-disc list-inside text-sm text-gray-700 mt-2">
+                                    <li>直達波速率：約 <span class="font-mono font-bold">380 ~ 432 m/s</span></li>
+                                    <li>折射波速率：約 <span class="font-mono font-bold">1285 ~ 1466 m/s</span></li>
+                                </ul>
                             </div>
                         </div>
+
+                        <!-- Gallery for HW5 -->
+                        <div class="mt-8">
+                            <h4 class="text-lg font-bold text-gray-800 mb-3 border-b pb-2">實驗照片與數據紀錄</h4>
+                            <div class="flex overflow-x-auto gap-4 pb-4 gallery-scroll">
+                                <!-- Photo 1: Setup -->
+                                <div class="min-w-[250px] md:min-w-[300px] border rounded-lg overflow-hidden shadow-sm">
+                                    <img src="lab_setup.jpg" alt="實驗架設" class="w-full h-48 object-cover hover:scale-105 transition-transform">
+                                    <div class="p-2 bg-gray-50 text-center text-sm font-medium text-gray-600">實驗儀器架設</div>
+                                </div>
+                                <!-- Photo 2: Process -->
+                                <div class="min-w-[250px] md:min-w-[300px] border rounded-lg overflow-hidden shadow-sm">
+                                    <img src="lab_process.jpg" alt="實驗過程" class="w-full h-48 object-cover hover:scale-105 transition-transform">
+                                    <div class="p-2 bg-gray-50 text-center text-sm font-medium text-gray-600">震源敲擊過程</div>
+                                </div>
+                                <!-- Photo 3: Data -->
+                                <div class="min-w-[250px] md:min-w-[300px] border rounded-lg overflow-hidden shadow-sm">
+                                    <img src="lab_data.jpg" alt="數據分析" class="w-full h-48 object-cover hover:scale-105 transition-transform">
+                                    <div class="p-2 bg-gray-50 text-center text-sm font-medium text-gray-600">數據與走時曲線</div>
+                                </div>
+                            </div>
+                            <p class="text-xs text-red-500 mt-2">* 請確保您的資料夾中有 lab_setup.jpg, lab_process.jpg, lab_data.jpg 三張圖片</p>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -280,20 +320,30 @@
                     <span class="bg-pink-100 text-pink-800 text-sm font-bold px-3 py-1 rounded-full mr-4">作業 4</span>
                     <h3 class="text-2xl font-bold text-gray-900">折射公式推導</h3>
                 </div>
+                
+                <div class="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg flex items-start">
+                    <i class="fa-solid fa-circle-info text-yellow-600 mt-1 mr-3"></i>
+                    <p class="text-sm text-yellow-800">
+                        如果下方圖片無法顯示，請確認您的 GitHub Repository 根目錄中確實有名為 
+                        <strong class="font-mono">image_ae690b.jpg</strong> 和 
+                        <strong class="font-mono">image_ae6948.jpg</strong> 的檔案。
+                    </p>
+                </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Image Placeholder 1 -->
-                    <div class="border-2 border-dashed border-gray-300 rounded-xl min-h-[300px] flex flex-col items-center justify-center p-4 bg-gray-50 group hover:border-blue-400 transition">
-                        <!-- User should replace this div with: <img src="image_ae690b.jpg" class="max-h-full rounded shadow-sm" alt="推導過程圖1"> -->
-                        <i class="fa-regular fa-image text-4xl text-gray-400 mb-3 group-hover:text-blue-500"></i>
-                        <p class="text-gray-500 font-medium">請在此處放入圖片 1</p>
-                        <p class="text-xs text-gray-400 mt-2">檔名建議: derivation1.jpg</p>
+                    <!-- Image 1 -->
+                    <div class="rounded-xl overflow-hidden shadow-md border border-gray-200">
+                        <img src="image_ae690b.jpg" alt="折射公式推導過程圖 1" class="w-full h-auto object-contain hover:scale-105 transition-transform duration-300">
+                        <div class="p-3 bg-gray-50 border-t">
+                            <p class="text-center text-gray-600 text-sm font-medium">推導過程 - Part 1</p>
+                        </div>
                     </div>
-                     <!-- Image Placeholder 2 -->
-                     <div class="border-2 border-dashed border-gray-300 rounded-xl min-h-[300px] flex flex-col items-center justify-center p-4 bg-gray-50 group hover:border-blue-400 transition">
-                        <!-- User should replace this div with: <img src="image_ae6948.jpg" class="max-h-full rounded shadow-sm" alt="推導過程圖2"> -->
-                        <i class="fa-regular fa-image text-4xl text-gray-400 mb-3 group-hover:text-blue-500"></i>
-                        <p class="text-gray-500 font-medium">請在此處放入圖片 2</p>
-                        <p class="text-xs text-gray-400 mt-2">檔名建議: derivation2.jpg</p>
+                     <!-- Image 2 -->
+                     <div class="rounded-xl overflow-hidden shadow-md border border-gray-200">
+                        <img src="image_ae6948.jpg" alt="折射公式推導過程圖 2" class="w-full h-auto object-contain hover:scale-105 transition-transform duration-300">
+                        <div class="p-3 bg-gray-50 border-t">
+                            <p class="text-center text-gray-600 text-sm font-medium">推導過程 - Part 2</p>
+                        </div>
                     </div>
                 </div>
                 <p class="mt-6 text-gray-600 text-center italic">
